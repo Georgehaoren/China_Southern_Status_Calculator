@@ -1,5 +1,13 @@
 # 南航明珠等级测算 WebUI（非官方）v20
 
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-blue">
+  <img alt="Flask" src="https://img.shields.io/badge/Flask-3.x-black">
+  <img alt="License" src="https://img.shields.io/badge/License-MIT-green">
+</p>
+
+<p align="center">
+
 > 本项目是一个**非官方、本地运行、维护者自行维护**的规划与数据分析工具，用于辅助测算南航明珠会员等级、定级里程、定级航段、奖励里程和成本效率。项目不隶属于、不代表、也未获得中国南方航空、南航明珠俱乐部或任何航空公司、机场、联盟、票务平台授权、认证、赞助或背书。
 
 ## 请先阅读：重要声明
