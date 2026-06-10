@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Local runtime
+flask_server.log
+*.log
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Private data that should not be committed
+private/
+*_private.*
+*account*
+*ticket*
+*order*
+*passport*
+*member*
+logs/*.log
+!logs/.gitkeep
+*.pyc

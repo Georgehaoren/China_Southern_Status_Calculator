@@ -1,0 +1,46 @@
+{
+  "version": "2026-06-working-v17-sanitized-sources",
+  "source_note": "非官方本地测算工作库。784票号代码共享/非CZ/OQ承运规则包含匿名化入账观察和人工维护字段，不代表南航或承运航司保证入账。",
+  "default_award_rule": "qualifying_miles_times_member_coefficient",
+  "minimum_standard_miles": 500,
+  "segment_rule": "use_cz_ticketed_booking_class_segment_credit",
+  "eligibility_notes_cn": [
+    "适用于市场方为 CZ/OQ、票号前缀为 784、实际承运方不是 CZ/OQ 的代码共享/非南航承运场景。",
+    "定级航段按南航出票时的订座舱位代码查 cz_cabin_segment_credit；例如 U 舱按 0.75 段估算。",
+    "定级里程按实际承运方/非南航承运的舱位累积率估算；若本库未录入对应承运方和舱位，请使用手动模式或补充 JSON/CSV。",
+    "本库包含匿名化实测 HO/U 舱样本：CZ/OQ 市场方、784票号、非CZ/OQ实际承运、U舱，定级里程约 126、定级航段 0.75；据此将 HO U 舱暂按 25% 工作规则估算。"
+  ],
+  "carriers": {
+    "HO": {
+      "name_cn": "吉祥航空",
+      "name_en": "Juneyao Air",
+      "valid_from": null,
+      "valid_to": null,
+      "validity_cn": "匿名化实测样本工作规则；需以南航最终入账为准",
+      "rules": [
+        {
+          "service_class": "economy",
+          "cabins": [
+            "U"
+          ],
+          "mileage_rate": 0.25,
+          "rule_source": "anonymized_posting_sample_u",
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        }
+      ],
+      "notes_cn": [
+        "仅录入匿名化实测 U 舱样本；其他舱位请补充规则或用手动模式。"
+      ]
+    }
+  },
+  "source_registry": "data/data_sources_2026.json",
+  "source_refs": [
+    "SRC-004",
+    "SRC-003"
+  ],
+  "data_governance_note_cn": "非官方本地测算工作库；字段为人工整理或匿名化观测样本，不能替代航空公司官网、客服、客票规则或最终账户入账。公开发布时请保留 source_refs 与 source_registry。 本项目部分代码/文档/数据整理流程使用 AI 辅助生成或修改，公开发布前请人工复核。",
+  "source_url": "https://www.csair.com/mcms/mcmsNewSite/mows/cn/#/skypearl/member/hyqy/hzhs",
+  "ai_assisted_notice_cn": "本项目部分代码、文档和数据整理流程使用 AI 辅助生成或修改；数据仍需人工核验，实际以航空公司官方渠道和账户入账为准。"
+}

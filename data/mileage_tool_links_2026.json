@@ -1,0 +1,139 @@
+{
+  "version": "2026-06-working-v17-sanitized-sources",
+  "source_note": "非官方链接集合。用于引导使用者自行打开航空公司/公开工具查询标准里程后手动填写；本项目不自动抓取或保证链接结果。",
+  "default_tool_code": "CZ",
+  "recommended_sources_order": [
+    "manual_actual_posting",
+    "manual_official_tool",
+    "cz_skypearl_calculator",
+    "airline_own_calculator",
+    "airport_distance_estimate",
+    "unknown"
+  ],
+  "tools": [
+    {
+      "code": "CZ",
+      "program": "南航明珠俱乐部",
+      "name_cn": "南航明珠里程累积查询",
+      "name_en": "China Southern Sky Pearl mileage earning lookup",
+      "tool_url": "https://skypearl.csair.com/",
+      "tool_type": "official_calculator",
+      "priority": 1,
+      "default_for_cz_tool": true,
+      "recommended_for": "累积到南航明珠时的默认查询工具；可查会员类型、消费品类、消费金额、始发/到达城市、舱位等。",
+      "notes_cn": "建议优先使用。若本工具中的标准里程或合作伙伴规则与实际入账不一致，以南航官方/公开查询渠道和实际入账为准。",
+      "source_url": "https://skypearl.csair.com/"
+    },
+    {
+      "code": "CA",
+      "program": "凤凰知音",
+      "name_cn": "国航凤凰知音里程累积计算器",
+      "name_en": "Air China PhoenixMiles mileage accrual calculator",
+      "tool_url": "https://ffp.airchina.com.cn/plan/mileage_accumulate_calculator.html",
+      "tool_type": "official_calculator",
+      "priority": 2,
+      "default_for_cz_tool": false,
+      "recommended_for": "国航系、星盟和凤凰知音口径参考；也可用于核对 IATA 实际里程口径。",
+      "notes_cn": "该页面说明累积以 IATA 公布的始发地至目的地实际里程为基准，再按承运人和付费舱位计算。累积到南航时仍需回到南航规则核对。",
+      "source_url": "https://ffp.airchina.com.cn/plan/mileage_accumulate_calculator.html"
+    },
+    {
+      "code": "MU",
+      "program": "东方万里行",
+      "name_cn": "东方万里行里程/积分查询参考",
+      "name_en": "China Eastern Eastern Miles reference",
+      "tool_url": "https://ecmembers.ceair.com/futureplus/mileageCalculator.html",
+      "tool_type": "official_calculator_or_reference",
+      "priority": 3,
+      "default_for_cz_tool": false,
+      "recommended_for": "东航、上航等东方万里行口径参考。",
+      "notes_cn": "如直达页面不可用，可从东方万里行官网进入里程/积分计算或FAQ。东航FAQ说明标准里程为 IATA 公布城市对距离。",
+      "source_url": "https://global.ceair.com/global/static/MutualSupport/CommonProblem/pointsrelatedissues/"
+    },
+    {
+      "code": "HU",
+      "program": "金鹏俱乐部",
+      "name_cn": "海航金鹏俱乐部积分计算器",
+      "name_en": "Hainan Airlines Fortune Wings Club points calculator",
+      "tool_url": "https://ffp.hnair.com/FFPClub/cn/hqjf/index.html?jsq=",
+      "tool_type": "official_calculator",
+      "priority": 4,
+      "default_for_cz_tool": false,
+      "recommended_for": "海航系/金鹏俱乐部累积或兑换积分参考。",
+      "notes_cn": "仅作为金鹏口径参考；若累积到南航明珠，请按南航合作伙伴或实际入账口径。",
+      "source_url": "https://ffp.hnair.com/FFPClub/cn/hqjf/index.html?jsq="
+    },
+    {
+      "code": "MF",
+      "program": "白鹭会员俱乐部",
+      "name_cn": "厦航白鹭卡积分/航班累积规则",
+      "name_en": "XiamenAir Egret Miles flight accrual reference",
+      "tool_url": "https://ffp.xiamenair.com/zh-CN/Accural/FlightAccural.html",
+      "tool_type": "official_reference",
+      "priority": 5,
+      "default_for_cz_tool": false,
+      "recommended_for": "厦航白鹭俱乐部累积规则参考；南航明珠中 MF 合作伙伴累积仍以南航规则为准。",
+      "notes_cn": "可结合城市间积分兑换计算器核对城市对。",
+      "source_url": "https://ffp.xiamenair.com/zh-CN/Accural/FlightAccural.html"
+    },
+    {
+      "code": "MF_EXCHANGE",
+      "program": "白鹭会员俱乐部",
+      "name_cn": "厦航城市间积分兑换计算器",
+      "name_en": "XiamenAir city-pair award calculator",
+      "tool_url": "https://ffp.xiamenair.com/zh-CN/Compute/Exchange",
+      "tool_type": "official_award_calculator",
+      "priority": 6,
+      "default_for_cz_tool": false,
+      "recommended_for": "厦航城市对兑换/距离口径人工校验。",
+      "notes_cn": "兑换计算器不等同累积入账，但可作为城市对口径辅助参考。",
+      "source_url": "https://ffp.xiamenair.com/zh-CN/Compute/Exchange"
+    },
+    {
+      "code": "3U",
+      "program": "金熊猫俱乐部",
+      "name_cn": "川航金熊猫里程累积规则",
+      "name_en": "Sichuan Airlines Golden Panda mileage accrual rules",
+      "tool_url": "https://serviceapp.sichuanair.com/views/staticinfo/statice840b9004c4b4450b1eee18e400f9c8a.html",
+      "tool_type": "official_reference",
+      "priority": 7,
+      "default_for_cz_tool": false,
+      "recommended_for": "川航自有金熊猫口径参考；也可核对标准里程与最低里程规则。",
+      "notes_cn": "川航页面说明乘机里程=标准里程×里程累积率，标准里程参照国际航协公布城市对距离；但南航明珠累积 3U 仍需以南航合作伙伴表为准。",
+      "source_url": "https://serviceapp.sichuanair.com/views/staticinfo/statice840b9004c4b4450b1eee18e400f9c8a.html"
+    },
+    {
+      "code": "IATA_TPM",
+      "program": "IATA",
+      "name_cn": "IATA Ticketed Point Mileage (TPM)",
+      "name_en": "IATA TPM Manual / data service",
+      "tool_url": "https://www.iata.org/en/publications/manuals/mileage/ticketed-point-mileage-tpm/",
+      "tool_type": "commercial_reference",
+      "priority": 90,
+      "default_for_cz_tool": false,
+      "recommended_for": "高级校验或商业授权场景；不是免费默认依赖。",
+      "notes_cn": "IATA TPM 最接近航司城市对里程口径，但通常为商业出版物/数据服务。",
+      "source_url": "https://www.iata.org/en/publications/manuals/mileage/ticketed-point-mileage-tpm/"
+    },
+    {
+      "code": "OURAIRPORTS",
+      "program": "Open airport data",
+      "name_cn": "OurAirports 机场三字码/经纬度库",
+      "name_en": "OurAirports open airport data",
+      "tool_url": "https://ourairports.com/data/",
+      "tool_type": "open_data_fallback",
+      "priority": 99,
+      "default_for_cz_tool": false,
+      "recommended_for": "无航空公司工具或使用者只需估算时，可用机场经纬度自行计算大圆距离。",
+      "notes_cn": "这不是航司标准里程工具；只适合做 fallback 估算，结果需标记为 airport_distance_estimate。",
+      "source_url": "https://ourairports.com/data/"
+    }
+  ],
+  "source_registry": "data/data_sources_2026.json",
+  "source_refs": [
+    "SRC-005",
+    "SRC-002"
+  ],
+  "data_governance_note_cn": "非官方本地测算工作库；字段为人工整理或匿名化观测样本，不能替代航空公司官网、客服、客票规则或最终账户入账。公开发布时请保留 source_refs 与 source_registry。 本项目部分代码/文档/数据整理流程使用 AI 辅助生成或修改，公开发布前请人工复核。",
+  "ai_assisted_notice_cn": "本项目部分代码、文档和数据整理流程使用 AI 辅助生成或修改；数据仍需人工核验，实际以航空公司官方渠道和账户入账为准。"
+}

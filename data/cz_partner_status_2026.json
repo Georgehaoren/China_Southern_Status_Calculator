@@ -1,0 +1,427 @@
+{
+  "version": "2026-06-working-v17-sanitized-sources",
+  "source_note": "非官方合作状态/风险工作库。用于避免把历史联盟/历史合作错误当作当前可累积；状态必须随南航公告、合作航司公告和实际入账持续更新。",
+  "policy_notes_cn": [
+    "南航2019年退出天合联盟时曾公告与多家天合成员继续双边常旅客合作；但2025-2026后公开页面/公告显示部分旧合作已调整、暂停或终止。本库将旧天合伙伴默认标记为需核验，不再默认自动累积。",
+    "合作状态只用于本地测算和输入提示，不等同于实际入账保证；实际应以南航明珠最新合作伙伴页面、公告、客服确认和最终入账为准。",
+    "代码共享合作与常旅客累积合作需要分开记录；即使代码共享仍存在，也不代表可累积南航定级里程/航段。"
+  ],
+  "status_definitions": {
+    "active_ffp_partner": "当前可作为南航明珠合作伙伴累积的工作状态。",
+    "active_limited_or_special": "当前可用但存在日期/航线/票号/舱位等限制。",
+    "adjusted_or_expired": "公开表或公告显示已调整/到期；默认不自动计入2026以后计划。",
+    "legacy_skyteam_verify_required": "南航退出天合后曾有双边合作，但当前公开状态不明确或可能已暂停/终止；默认不自动计入。",
+    "codeshare_or_elite_only_unknown_ffp": "可能有代码共享/精英权益/其他合作，但常旅客累积未知；默认仅作为输入提示。",
+    "self_or_subsidiary": "南航/重航体系内。"
+  },
+  "carriers": {
+    "CZ": {
+      "code": "CZ",
+      "ffp_status": "self_or_subsidiary",
+      "current_accrual_eligible": true,
+      "risk_level": "low",
+      "relation_hint": "self",
+      "status_note_cn": "南航明珠主航司；按南航/重航规则处理。",
+      "source": "manual_2026_working_library"
+    },
+    "OQ": {
+      "code": "OQ",
+      "ffp_status": "self_or_subsidiary",
+      "current_accrual_eligible": true,
+      "risk_level": "low",
+      "relation_hint": "subsidiary",
+      "status_note_cn": "重航按南航体系规则处理。",
+      "source": "manual_2026_working_library"
+    },
+    "AA": {
+      "code": "AA",
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "low",
+      "relation_hint": "current_partner",
+      "status_note_cn": "美航为工作库标记为可累积参考合作伙伴，F/A 舱定级航段按 2 段处理。",
+      "source": "manual_2026_working_library"
+    },
+    "BA": {
+      "code": "BA",
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "low",
+      "relation_hint": "current_partner",
+      "status_note_cn": "英航为工作库标记为可累积参考合作伙伴。",
+      "source": "manual_2026_working_library"
+    },
+    "VN": {
+      "code": "VN",
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "low",
+      "relation_hint": "current_partner",
+      "status_note_cn": "越南航空为工作库标记为可累积参考合作伙伴。",
+      "source": "manual_2026_working_library"
+    },
+    "KE": {
+      "code": "KE",
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "low",
+      "relation_hint": "current_partner",
+      "status_note_cn": "大韩航空为工作库标记为可累积参考合作伙伴；工作表显示2026-04-01起。",
+      "source": "manual_2026_working_library"
+    },
+    "MF": {
+      "code": "MF",
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "low",
+      "relation_hint": "current_partner",
+      "status_note_cn": "厦门航空为工作库标记为可累积参考合作伙伴；工作表显示2025-01-01起。",
+      "source": "manual_2026_working_library"
+    },
+    "3U": {
+      "code": "3U",
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "medium",
+      "relation_hint": "current_partner",
+      "status_note_cn": "四川航空为工作库标记为可累积参考合作伙伴；需注意：四川航空仅能累积国内航班（不含港澳台地区航班）。",
+      "source": "manual_2026_working_library"
+    },
+    "EU": {
+      "code": "EU",
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "medium",
+      "relation_hint": "current_partner",
+      "status_note_cn": "成都航空为工作库标记为可累积参考合作伙伴，需按最新表核对舱位。",
+      "source": "manual_2026_working_library"
+    },
+    "CI": {
+      "code": "CI",
+      "ffp_status": "adjusted_or_expired",
+      "current_accrual_eligible": false,
+      "risk_level": "high",
+      "relation_hint": "legacy_partner",
+      "status_note_cn": "中华航空合作规则在工作库中保留历史/过渡表，但有效期显示至2025-12-31；2026以后默认不自动计入，请按最新公告核对。",
+      "source": "manual_2026_working_library"
+    },
+    "AE": {
+      "code": "AE",
+      "ffp_status": "adjusted_or_expired",
+      "current_accrual_eligible": false,
+      "risk_level": "high",
+      "relation_hint": "legacy_partner",
+      "status_note_cn": "华信航空与CI同列，工作库中历史/过渡表有效期至2025-12-31；2026以后默认不自动计入。",
+      "source": "manual_2026_working_library"
+    },
+    "AF": {
+      "code": "AF",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "法国航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "KL": {
+      "code": "KL",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "荷兰皇家航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "DL": {
+      "code": "DL",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "达美航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "MU": {
+      "code": "MU",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "中国东方航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "FM": {
+      "code": "FM",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "上海航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "ME": {
+      "code": "ME",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "中东航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "OK": {
+      "code": "OK",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "捷克航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "UX": {
+      "code": "UX",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "欧罗巴航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "AR": {
+      "code": "AR",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "阿根廷航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "AZ": {
+      "code": "AZ",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "意大利航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "SU": {
+      "code": "SU",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "俄罗斯航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "SV": {
+      "code": "SV",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "沙特航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "AM": {
+      "code": "AM",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "墨西哥航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "GA": {
+      "code": "GA",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "印尼鹰航属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "RO": {
+      "code": "RO",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "罗马尼亚航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "KQ": {
+      "code": "KQ",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "肯尼亚航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "KLM": {
+      "code": "KLM",
+      "ffp_status": "legacy_skyteam_verify_required",
+      "current_accrual_eligible": false,
+      "risk_level": "verify_required",
+      "relation_hint": "legacy_skyteam",
+      "status_note_cn": "荷兰皇家航空属于历史天合/历史合作语境中可能出现的航司；2025-2026工作库中默认不作为当前南航明珠可累积合作伙伴。代码共享情况需另行核对。",
+      "source": "manual_2026_working_library"
+    },
+    "QR": {
+      "code": "QR",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "卡塔尔航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "VA": {
+      "code": "VA",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "维珍澳洲航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "6E": {
+      "code": "6E",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "印度靛蓝航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "JL": {
+      "code": "JL",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "日本航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "HO": {
+      "code": "HO",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "吉祥航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "GJ": {
+      "code": "GJ",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "长龙航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "NS": {
+      "code": "NS",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "河北航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "QW": {
+      "code": "QW",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "青岛航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "KN": {
+      "code": "KN",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "中国联合航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "KY": {
+      "code": "KY",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "昆明航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "TV": {
+      "code": "TV",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "西藏航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "ZH": {
+      "code": "ZH",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "深圳航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "CA": {
+      "code": "CA",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "中国国际航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "HU": {
+      "code": "HU",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "海南航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "JD": {
+      "code": "JD",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "首都航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    },
+    "GS": {
+      "code": "GS",
+      "ffp_status": "codeshare_or_elite_only_unknown_ffp",
+      "current_accrual_eligible": false,
+      "risk_level": "medium",
+      "relation_hint": "codeshare_or_hint",
+      "status_note_cn": "天津航空作为代码共享/精英权益/输入提示候选保留；不代表当前参考可累积南航定级里程或航段。",
+      "source": "manual_2026_working_library"
+    }
+  },
+  "source_registry": "data/data_sources_2026.json",
+  "source_refs": [
+    "SRC-002",
+    "SRC-003",
+    "SRC-006"
+  ],
+  "data_governance_note_cn": "非官方本地测算工作库；字段为人工整理或匿名化观测样本，不能替代航空公司官网、客服、客票规则或最终账户入账。公开发布时请保留 source_refs 与 source_registry。 本项目部分代码/文档/数据整理流程使用 AI 辅助生成或修改，公开发布前请人工复核。",
+  "source_urls": [
+    "https://www.csair.com/mcms/mcmsNewSite/mows/cn/#/skypearl/earning/fly_/fly_operation",
+    "https://www.csair.com/mcms/mcmsNewSite/mows/cn/#/skypearl/member/hyqy/hzhs"
+  ],
+  "ai_assisted_notice_cn": "本项目部分代码、文档和数据整理流程使用 AI 辅助生成或修改；数据仍需人工核验，实际以航空公司官方渠道和账户入账为准。"
+}

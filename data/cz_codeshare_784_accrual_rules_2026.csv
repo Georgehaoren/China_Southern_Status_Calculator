@@ -1,0 +1,2 @@
+﻿carrier_code,name_cn,name_en,valid_from,valid_to,validity_cn,service_class,service_class_cn,service_class_en,service_class_display,cabins,mileage_rate,rule_source,notes_cn,source_registry,source_refs,source_url_reference,ai_assisted_notice
+HO,吉祥航空,Juneyao Air,,,匿名化实测样本工作规则；需以南航最终入账为准,economy,经济舱,Economy Class,经济舱 / Economy Class,U,0.25,anonymized_posting_sample_u,仅录入匿名化实测 U 舱样本；其他舱位请补充规则或用手动模式。,data/data_sources_2026.json,SRC-004 / SRC-003,https://www.csair.com/mcms/mcmsNewSite/mows/cn/#/skypearl/member/hyqy/hzhs,部分代码/文档/数据整理流程使用AI辅助生成或修改；数据需人工核验。

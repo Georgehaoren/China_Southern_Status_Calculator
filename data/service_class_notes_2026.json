@@ -1,0 +1,41 @@
+{
+  "version": "2026-06-service-class-notes-working",
+  "unofficial": true,
+  "description_cn": "非官方服务等级/产品命名歧义说明库，用于前端提示和 README/免责声明引用。",
+  "data_governance_note_cn": "本文件为维护者维护的说明性工作库，不代表航空公司官方解释。",
+  "records": [
+    {
+      "id": "SCN-001",
+      "topic": "AA First / Flagship First ambiguity",
+      "carrier_code": "AA",
+      "name_cn": "美国航空 First / Flagship First 命名歧义",
+      "name_en": "American Airlines First / Flagship First naming ambiguity",
+      "note_cn": "AA 的 First、Flagship First International、Flagship First Transcontinental 等属于产品/体验名称语境；本工具中 AA F/A 显示为头等舱 / First Class 仅为规则库归类，不能据此判断具体产品或权益。应按实际订座舱位代码、南航合作伙伴累积表及最终入账计算。",
+      "note_en": "AA First, Flagship First International, and Flagship First Transcontinental are product-context names. AA F/A shown as First Class in this tool is only a rule-display category; users should rely on booking code, CZ partner accrual rules, and actual posting.",
+      "source_refs": "SRC-009/SRC-010/SRC-011/SRC-012",
+      "risk_note_cn": "产品名和舱位代码可能不一一对应；不要用产品名替代 RBD。"
+    },
+    {
+      "id": "SCN-002",
+      "topic": "CZ Pearl Economy / Premium Economy naming",
+      "carrier_code": "CZ",
+      "name_cn": "南航明珠经济舱 / Premium Economy 命名",
+      "name_en": "China Southern Pearl Economy / Premium Economy naming",
+      "note_cn": "南航中文页面和会员手册可能使用“明珠经济舱”，英文页面可使用 Premium Economy Class。本工具用“超级经济舱 / Premium Economy”作为通用双语服务等级标签，涉及南航产品时应理解为可能对应南航明珠经济舱语境。",
+      "note_en": "China Southern Chinese pages and handbook may use Pearl Economy, while English pages may use Premium Economy Class. This tool uses Premium Economy as a generic display label; CZ-specific products may be described as Pearl Economy.",
+      "source_refs": "SRC-001/SRC-013/SRC-014",
+      "risk_note_cn": "中文产品名、英文产品名和通用服务等级标签可能不同。"
+    },
+    {
+      "id": "SCN-003",
+      "topic": "Generic service-class display disclaimer",
+      "carrier_code": "ALL",
+      "name_cn": "通用服务等级显示声明",
+      "name_en": "Generic service-class display disclaimer",
+      "note_cn": "服务等级字段仅用于显示和规则归类，不用于自动推断累积资格。实际累积应按承运人、票号、订座舱位、官方累积表和最终入账核验。",
+      "note_en": "Service-class labels are display/grouping labels only and should not be used to infer accrual eligibility automatically. Verify by carrier, ticket number, booking class, official accrual table, and final posting.",
+      "source_refs": "SRC-001/SRC-002/SRC-003",
+      "risk_note_cn": "如显示标签与实际入账冲突，以实际入账为准。"
+    }
+  ]
+}

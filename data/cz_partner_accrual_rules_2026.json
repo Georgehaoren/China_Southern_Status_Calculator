@@ -1,0 +1,790 @@
+{
+  "source": "非官方本地测算工作库。合作伙伴累积字段主要基于公开页面参考人工转写，并以南航乘机累积/合作伙伴页面链接作为人工核对入口；请以南航最新页面与实际入账为准。",
+  "version": "2026-06-working-v17-sanitized-sources",
+  "minimum_standard_miles": 500,
+  "default_partner_award_rule": "same_as_qualifying_miles",
+  "eligibility_notes_cn": [
+    "一般要求市场方承运人与实际承运人为同一家航空合作伙伴，代码共享航班通常不计入。",
+    "合作伙伴定级/奖励里程通常按标准里程乘以舱位累积比例计算，奖励里程与定级里程按相同里程数测算。",
+    "定级航段以表中“计入定级航段”列为准，部分合作伙伴即使有里程也不计航段。",
+    "本库为维护者维护的本地测算参考数据，可能随航空公司页面、公告和实际入账规则变化；请在使用前自行核对。"
+  ],
+  "partners": {
+    "VN": {
+      "name_en": "Vietnam Airlines",
+      "name_cn": "越南航空",
+      "website": "www.vietnamairlines.com",
+      "validity_cn": "旅行日期 2024年6月1日(含)起",
+      "valid_from": "2024-06-01",
+      "valid_to": null,
+      "rules": [
+        {
+          "service_class": "business",
+          "cabins": [
+            "J",
+            "C"
+          ],
+          "mileage_rate": 1.5,
+          "segment_credit": 0,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "D"
+          ],
+          "mileage_rate": 1.25,
+          "segment_credit": 0,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "premium_economy",
+          "cabins": [
+            "W"
+          ],
+          "mileage_rate": 1.2,
+          "segment_credit": 0,
+          "service_class_cn": "超级经济舱",
+          "service_class_en": "Premium Economy",
+          "service_class_display": "超级经济舱 / Premium Economy"
+        },
+        {
+          "service_class": "premium_economy",
+          "cabins": [
+            "Z",
+            "U"
+          ],
+          "mileage_rate": 1.1,
+          "segment_credit": 0,
+          "service_class_cn": "超级经济舱",
+          "service_class_en": "Premium Economy",
+          "service_class_display": "超级经济舱 / Premium Economy"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "Y",
+            "B",
+            "M"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "S",
+            "H",
+            "K"
+          ],
+          "mileage_rate": 0.65,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "Q",
+            "N",
+            "R",
+            "T",
+            "E"
+          ],
+          "mileage_rate": 0.25,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        }
+      ],
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "low",
+      "status_note_cn": "越南航空为工作库标记为可累积参考合作伙伴。"
+    },
+    "BA": {
+      "name_en": "British Airways",
+      "name_cn": "英国航空",
+      "website": "www.britishairways.com",
+      "validity_cn": "旅行日期 2023年4月1日(含)起",
+      "valid_from": "2023-04-01",
+      "valid_to": null,
+      "rules": [
+        {
+          "service_class": "first",
+          "cabins": [
+            "F",
+            "A"
+          ],
+          "mileage_rate": 1.5,
+          "segment_credit": 0,
+          "service_class_cn": "头等舱",
+          "service_class_en": "First Class",
+          "service_class_display": "头等舱 / First Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "J",
+            "C",
+            "D",
+            "R"
+          ],
+          "mileage_rate": 1.25,
+          "segment_credit": 0,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "I"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 0,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "premium_economy",
+          "cabins": [
+            "W",
+            "E",
+            "T"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 0,
+          "service_class_cn": "超级经济舱",
+          "service_class_en": "Premium Economy",
+          "service_class_display": "超级经济舱 / Premium Economy"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "Y",
+            "B",
+            "H"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "K",
+            "L",
+            "M",
+            "V",
+            "S",
+            "N"
+          ],
+          "mileage_rate": 0.4,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "O",
+            "Q",
+            "G"
+          ],
+          "mileage_rate": 0.25,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        }
+      ],
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "low",
+      "status_note_cn": "英航为工作库标记为可累积参考合作伙伴。"
+    },
+    "KE": {
+      "name_en": "Korean Air",
+      "name_cn": "大韩航空",
+      "website": "www.koreanair.com",
+      "validity_cn": "旅行日期 2026年4月1日(含)起",
+      "valid_from": "2026-04-01",
+      "valid_to": null,
+      "rules": [
+        {
+          "service_class": "first",
+          "cabins": [
+            "F"
+          ],
+          "mileage_rate": 1.5,
+          "segment_credit": 1,
+          "service_class_cn": "头等舱",
+          "service_class_en": "First Class",
+          "service_class_display": "头等舱 / First Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "J",
+            "C",
+            "D",
+            "I",
+            "R"
+          ],
+          "mileage_rate": 1.3,
+          "segment_credit": 2,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "Z"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 1,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "premium_economy",
+          "cabins": [
+            "V"
+          ],
+          "mileage_rate": 1.1,
+          "segment_credit": 1,
+          "service_class_cn": "超级经济舱",
+          "service_class_en": "Premium Economy",
+          "service_class_display": "超级经济舱 / Premium Economy"
+        },
+        {
+          "service_class": "premium_economy",
+          "cabins": [
+            "W",
+            "P"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 1,
+          "service_class_cn": "超级经济舱",
+          "service_class_en": "Premium Economy",
+          "service_class_display": "超级经济舱 / Premium Economy"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "Y",
+            "B",
+            "M",
+            "S"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 1,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        }
+      ],
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "low",
+      "status_note_cn": "大韩航空为工作库标记为可累积参考合作伙伴；工作表显示2026-04-01起。"
+    },
+    "MF": {
+      "name_en": "XiamenAir",
+      "name_cn": "厦门航空",
+      "website": "www.xiamenair.com",
+      "validity_cn": "旅行日期 2025年1月1日(含)起",
+      "valid_from": "2025-01-01",
+      "valid_to": null,
+      "rules": [
+        {
+          "service_class": "first",
+          "cabins": [
+            "F"
+          ],
+          "mileage_rate": 3.0,
+          "segment_credit": 2,
+          "service_class_cn": "头等舱",
+          "service_class_en": "First Class",
+          "service_class_display": "头等舱 / First Class"
+        },
+        {
+          "service_class": "first",
+          "cabins": [
+            "A"
+          ],
+          "mileage_rate": 1.5,
+          "segment_credit": 2,
+          "service_class_cn": "头等舱",
+          "service_class_en": "First Class",
+          "service_class_display": "头等舱 / First Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "J"
+          ],
+          "mileage_rate": 2.0,
+          "segment_credit": 1,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "C",
+            "D"
+          ],
+          "mileage_rate": 1.3,
+          "segment_credit": 1,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "I"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 1,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "Y",
+            "H",
+            "B"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 1,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "M",
+            "L"
+          ],
+          "mileage_rate": 0.75,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "K",
+            "N",
+            "Q",
+            "V",
+            "P"
+          ],
+          "mileage_rate": 0.4,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "T",
+            "R"
+          ],
+          "mileage_rate": 0.1,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        }
+      ],
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "low",
+      "status_note_cn": "厦门航空为工作库标记为可累积参考合作伙伴；工作表显示2025-01-01起。"
+    },
+    "CI": {
+      "name_en": "China Airlines / Mandarin Airlines",
+      "name_cn": "中华航空 / 华信航空",
+      "website": "www.china-airlines.com / www.mandarin-airlines.com",
+      "validity_cn": "旅行日期至2025年12月31日止(含)",
+      "valid_from": null,
+      "valid_to": "2025-12-31",
+      "also_codes": [
+        "AE"
+      ],
+      "rules": [
+        {
+          "service_class": "business",
+          "cabins": [
+            "J"
+          ],
+          "mileage_rate": 1.3,
+          "segment_credit": 2,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "C"
+          ],
+          "mileage_rate": 1.25,
+          "segment_credit": 2,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "D"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 1,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "premium_economy",
+          "cabins": [
+            "W",
+            "U"
+          ],
+          "mileage_rate": 1.15,
+          "segment_credit": 1,
+          "service_class_cn": "超级经济舱",
+          "service_class_en": "Premium Economy",
+          "service_class_display": "超级经济舱 / Premium Economy"
+        },
+        {
+          "service_class": "premium_economy",
+          "cabins": [
+            "A",
+            "E"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 1,
+          "service_class_cn": "超级经济舱",
+          "service_class_en": "Premium Economy",
+          "service_class_display": "超级经济舱 / Premium Economy"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "Y"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 1,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "B",
+            "M",
+            "K",
+            "T"
+          ],
+          "mileage_rate": 0.8,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "R",
+            "Q",
+            "H",
+            "N"
+          ],
+          "mileage_rate": 0.4,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        }
+      ],
+      "ffp_status": "adjusted_or_expired",
+      "current_accrual_eligible": false,
+      "risk_level": "high",
+      "status_note_cn": "中华航空合作规则在工作库中保留历史/过渡表，但有效期显示至2025-12-31；2026以后默认不自动计入，请按最新公告核对。",
+      "notes_cn": [
+        "中华航空合作规则在工作库中保留历史/过渡表，但有效期显示至2025-12-31；2026以后默认不自动计入，请按最新公告核对。"
+      ]
+    },
+    "AA": {
+      "name_en": "American Airlines",
+      "name_cn": "美国航空",
+      "website": "www.americanairlines.cn",
+      "validity_cn": "旅行日期 2019年3月20日(含)起",
+      "valid_from": "2019-03-20",
+      "valid_to": null,
+      "rules": [
+        {
+          "service_class": "first",
+          "cabins": [
+            "F",
+            "A"
+          ],
+          "mileage_rate": 1.5,
+          "segment_credit": 2,
+          "notes_cn": [
+            "按人工核对：AA F/A 舱累积南航定级航段为 2 段。"
+          ],
+          "service_class_cn": "头等舱",
+          "service_class_en": "First Class",
+          "service_class_display": "头等舱 / First Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "J",
+            "D",
+            "R",
+            "I"
+          ],
+          "mileage_rate": 1.5,
+          "segment_credit": 1,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "premium_economy",
+          "cabins": [
+            "W"
+          ],
+          "mileage_rate": 1.1,
+          "segment_credit": 1,
+          "service_class_cn": "超级经济舱",
+          "service_class_en": "Premium Economy",
+          "service_class_display": "超级经济舱 / Premium Economy"
+        },
+        {
+          "service_class": "premium_economy",
+          "cabins": [
+            "P"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 1,
+          "service_class_cn": "超级经济舱",
+          "service_class_en": "Premium Economy",
+          "service_class_display": "超级经济舱 / Premium Economy"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "Y",
+            "H",
+            "K",
+            "M"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 1,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "V",
+            "G"
+          ],
+          "mileage_rate": 0.5,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "N",
+            "S",
+            "Q",
+            "O"
+          ],
+          "mileage_rate": 0.25,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        }
+      ],
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "low",
+      "status_note_cn": "美航为工作库标记为可累积参考合作伙伴，F/A 舱定级航段按 2 段处理。"
+    },
+    "3U": {
+      "name_en": "Sichuan Airlines",
+      "name_cn": "四川航空",
+      "website": "www.sichuanair.com",
+      "validity_cn": "旅行日期 2024年8月1日(含)以后",
+      "valid_from": "2024-08-01",
+      "valid_to": null,
+      "notes_cn": [
+        "来源备注：四川航空仅能累积国内航班（不含港澳台地区航班）。"
+      ],
+      "rules": [
+        {
+          "service_class": "business",
+          "cabins": [
+            "C"
+          ],
+          "mileage_rate": 1.5,
+          "segment_credit": 0,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "I"
+          ],
+          "mileage_rate": 1.3,
+          "segment_credit": 0,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "business",
+          "cabins": [
+            "J"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 0,
+          "service_class_cn": "公务舱",
+          "service_class_en": "Business Class",
+          "service_class_display": "公务舱 / Business Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "A",
+            "P",
+            "Y",
+            "T"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "H"
+          ],
+          "mileage_rate": 0.9,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "G",
+            "L",
+            "E"
+          ],
+          "mileage_rate": 0.4,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        }
+      ],
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "medium",
+      "status_note_cn": "四川航空为工作库标记为可累积参考合作伙伴；需注意：四川航空仅能累积国内航班（不含港澳台地区航班）。"
+    },
+    "EU": {
+      "name_en": "Chengdu Airlines",
+      "name_cn": "成都航空",
+      "website": "www.cdal.com.cn",
+      "validity_cn": "旅行日期在2024年6月28日(含)以后",
+      "valid_from": "2024-06-28",
+      "valid_to": null,
+      "rules": [
+        {
+          "service_class": "economy",
+          "cabins": [
+            "Y"
+          ],
+          "mileage_rate": 1.25,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        },
+        {
+          "service_class": "economy",
+          "cabins": [
+            "T",
+            "H"
+          ],
+          "mileage_rate": 1.0,
+          "segment_credit": 0,
+          "service_class_cn": "经济舱",
+          "service_class_en": "Economy Class",
+          "service_class_display": "经济舱 / Economy Class"
+        }
+      ],
+      "ffp_status": "active_ffp_partner",
+      "current_accrual_eligible": true,
+      "risk_level": "medium",
+      "status_note_cn": "成都航空为工作库标记为可累积参考合作伙伴，需按最新表核对舱位。"
+    }
+  },
+  "policy_notes_cn": [
+    "v11: 对历史天合联盟合作伙伴加入 current_accrual_eligible 与 ffp_status 标记；非当前参考可累积状态默认不建议自动计入。"
+  ],
+  "source_registry": "data/data_sources_2026.json",
+  "source_refs": [
+    "SRC-002",
+    "SRC-003",
+    "SRC-006"
+  ],
+  "data_governance_note_cn": "非官方本地测算工作库；字段为人工整理或匿名化观测样本，不能替代航空公司官网、客服、客票规则或最终账户入账。公开发布时请保留 source_refs 与 source_registry。 本项目部分代码/文档/数据整理流程使用 AI 辅助生成或修改，公开发布前请人工复核。",
+  "source_url": "https://www.csair.com/mcms/mcmsNewSite/mows/cn/#/skypearl/earning/fly_/fly_operation",
+  "source_note": "该表不应视为南航官方数据库；历史天合伙伴或历史合作关系不代表当前仍可累积。",
+  "ai_assisted_notice_cn": "本项目部分代码、文档和数据整理流程使用 AI 辅助生成或修改；数据仍需人工核验，实际以航空公司官方渠道和账户入账为准。"
+}

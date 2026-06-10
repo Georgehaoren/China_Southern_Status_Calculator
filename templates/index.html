@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>南航明珠等级测算工具（非官方 / AI 辅助开发）</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}?v=23">
+</head>
+<body>
+  <div id="js-boot-banner" class="boot-banner">HTML 已加载，等待 JavaScript 启动…</div>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">China Southern Sky Pearl Club</p>
+      <h1>南航明珠等级测算工具</h1>
+      <p class="subtitle">非官方本地测算工具，用于辅助估算定级里程、定级航段、奖励里程、保级折扣、合作伙伴参考规则、784票号代码共享场景和成本效率。结果仅供规划分析，不构成购票、票务、法律、签证或常旅客规则建议；最终以航空公司官网、官方客服、出票页面、客票规则、运输总条件和账户实际入账为准。部分代码与文案由 AI 辅助生成并经人工整理。</p>
+    </div>
+    <div class="hero-card">
+      <span>规则版本</span>
+      <strong id="rules-version">加载中…</strong>
+      <small>非官方参考规则库；JSON / CSV 可自行替换</small>
+    </div>
+  </header>
+
+  <datalist id="carrier-code-list"></datalist>
+  <datalist id="mileage-tool-code-list"></datalist>
+
+  <section class="panel full notes legal-banner" style="max-width: 1600px; margin: 1rem auto;">
+    <h2>使用前须知 / 非官方声明</h2>
+    <p><strong>本项目为非官方、本地运行、维护者自行维护的测算工具。</strong> 本项目不隶属于、不代表、也未获得中国南方航空、南航明珠俱乐部或任何航空公司、联盟、机场、OTA、票务平台授权、认证、赞助或背书。</p>
+    <ul>
+      <li>所有结果仅为规划估算，不保证准确、完整、实时、可入账、可出票、可保级或可复现。</li>
+      <li>请以航空公司官网、官方 App/小程序、客服、出票页面、客票规则、运输总条件和账户最终入账为准。</li>
+      <li>本工具不构成法律、财务、税务、签证、保险、旅行安全、票务、票价构造或常旅客规则解释建议。</li>
+      <li>本项目不鼓励、不指导、不保证任何违反承运人运输总条件、票价规则、入境规定、法律法规或平台规则的行为。</li>
+      <li>数据文件为本地测算工作库，不是航空公司官方数据库；合作关系、权益、代码共享、累积资格和舱位规则均可能变化。</li>
+      <li>项目部分代码、文案、结构和测试说明由 AI 辅助生成或修改；AI 辅助内容可能存在错误、遗漏或过时假设。</li>
+    </ul>
+  </section>
+
+
+  <main class="layout">
+    <section class="panel settings-panel">
+      <h2>1. 会员与目标设置</h2>
+      <div class="grid four">
+        <label>当前级别
+          <select id="current_tier"></select>
+        </label>
+        <label>奖励里程按此级别系数
+          <select id="member_tier"></select>
+        </label>
+        <label>目标级别
+          <select id="target_tier"></select>
+        </label>
+        <label>评定场景 / 连续保级年限
+          <select id="retention_year">
+            <option value="">请选择</option>
+            <option value="upgrade">升级 / 新定级（不使用保级折扣）</option>
+            <option value="1">第一年保级</option>
+            <option value="2">连续两年保级</option>
+            <option value="3">连续三年及以上保级</option>
+          </select>
+        </label>
+      </div>
+      <p class="form-hint">提示：当前级别、奖励里程级别、目标级别和评定场景默认均为空，请按实际情况选择。选择“升级 / 新定级”时不应用保级折扣；选择“第几年保级”且目标级别不高于当前级别时，才按本地规则库中的保级折扣测算。</p>
+      <div class="grid four compact">
+        <label>当前已入账定级里程
+          <input id="current_qualifying_miles" type="number" min="0" step="1" value="0">
+        </label>
+        <label>当前已入账定级航段
+          <input id="current_qualifying_segments" type="number" min="0" step="0.25" value="0">
+        </label>
+        <label>上年溢出定级里程
+          <input id="carryover_miles" type="number" min="0" step="1" value="0">
+        </label>
+        <label>上年溢出定级航段
+          <input id="carryover_segments" type="number" min="0" step="0.25" value="0">
+        </label>
+      </div>
+    </section>
+
+    <section class="panel summary-panel">
+      <h2>2. 结果总览</h2>
+      <div class="cards">
+        <div class="metric"><span>目标门槛</span><strong id="target-threshold">—</strong><small id="target-note">—</small></div>
+        <div class="metric"><span>合计定级里程</span><strong id="total-qm">—</strong><small id="miles-gap">—</small></div>
+        <div class="metric"><span>合计定级航段</span><strong id="total-qs">—</strong><small id="segments-gap">—</small></div>
+        <div class="metric"><span>预计成本</span><strong id="planned-cost">—</strong><small id="cost-efficiency">—</small></div>
+      </div>
+      <div class="status-line" id="status-line">等待计算…</div>
+    </section>
+
+    <section class="panel full">
+      <div class="section-title-row">
+        <div>
+          <h2>3. 航段 / 产品明细</h2>
+          <p>支持 784 票号现金消费金额、784票号代码共享/非南航承运、CZ/OQ 标准里程、合作伙伴参考标准里程、辅助产品和手动模式。多航段联程票若只显示整单总价，可用“成本分摊组 + 成本口径”按段数或标准里程分摊；来源字段会随 CSV/JSON 导出，便于后续数据分析。</p>
+        </div>
+        <div class="actions">
+          <button type="button" id="add-row">新增一行</button>
+          <button type="button" id="load-sample" class="secondary">载入示例</button>
+          <button type="button" id="import-plan" class="secondary">导入 CSV/JSON</button>
+          <button type="button" id="download-template" class="secondary">下载 CSV 模板</button>
+          <button type="button" id="clear-all" class="danger">清空</button>
+          <input type="file" id="import-file" accept=".json,.csv,application/json,text/csv" hidden>
+        </div>
+      </div>
+
+      <div class="table-wrap" id="items-table-wrap">
+        <table id="items-table">
+          <colgroup>
+            <col class="col-name">
+            <col class="col-count">
+            <col class="col-type">
+            <col class="col-mode">
+            <col class="col-carrier">
+            <col class="col-carrier">
+            <col class="col-flight-number">
+            <col class="col-airport">
+            <col class="col-airport">
+            <col class="col-prefix">
+            <col class="col-cabin">
+            <col class="col-mileage">
+            <col class="col-source">
+            <col class="col-tool">
+            <col class="col-note">
+            <col class="col-cost-group">
+            <col class="col-cost-mode">
+            <col class="col-cash">
+            <col class="col-manual-miles">
+            <col class="col-manual-seg">
+            <col class="col-manual-award">
+            <col class="col-action">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>名称</th>
+              <th>次数/段数</th>
+              <th>类型</th>
+              <th>累积方式</th>
+              <th>市场方</th>
+              <th>承运方</th>
+              <th>航班号</th>
+              <th>始发</th>
+              <th>到达</th>
+              <th>票号前缀</th>
+              <th>舱位</th>
+              <th>标准里程</th>
+              <th>里程来源</th>
+              <th>工具代码</th>
+              <th>里程备注</th>
+              <th>成本分摊组</th>
+              <th>成本口径</th>
+              <th>现金消费额/成本</th>
+              <th>手动定级里程</th>
+              <th>手动航段</th>
+              <th>手动奖励里程</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="items-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel full">
+      <div class="section-title-row">
+        <div>
+          <h2>4. 明细计算结果</h2>
+          <p>每次修改后自动计算。导出的 CSV / JSON 使用后端重新计算，适合留档和后续分析。</p>
+        </div>
+        <div class="actions">
+          <button type="button" id="export-csv">导出计划 CSV</button>
+          <button type="button" id="export-json" class="secondary">导出计划 JSON</button>
+          <button type="button" id="save-local" class="secondary">保存草稿</button>
+        </div>
+      </div>
+      <div id="result-table" class="result-table"></div>
+    </section>
+
+    <section class="panel full">
+      <div class="section-title-row">
+        <div>
+          <h2>5. 合作伙伴规则库</h2>
+          <p>当前随包提供一份维护者维护的参考规则库，用于演示和本地测算。合作伙伴关系和舱位累积规则可能变化；公开发布或实际使用前请自行核对并替换 JSON / CSV。</p>
+        </div>
+        <div class="actions">
+          <a class="button-link" href="/api/partners/json">下载规则 JSON</a>
+          <a class="button-link secondary" href="/api/partners/csv">下载规则 CSV</a>
+        </div>
+      </div>
+      <div class="table-wrap" id="partner-rules-table">加载合作伙伴库…</div>
+    </section>
+
+
+    <section class="panel full">
+      <div class="section-title-row">
+        <div>
+          <h2>6. 航司代码查询库</h2>
+          <p>市场方/承运方输入框支持从该库自动补全；仍可手动输入未收录代码。该库用于提示，不代表一定可累积。</p>
+        </div>
+        <div class="actions">
+          <a class="button-link" href="/api/carriers/json">下载航司库 JSON</a>
+          <a class="button-link secondary" href="/api/carriers/csv">下载航司库 CSV</a>
+        </div>
+      </div>
+      <div class="table-wrap" id="carrier-directory-table">加载航司代码库…</div>
+    </section>
+
+
+
+    <section class="panel full">
+      <div class="section-title-row">
+        <div>
+          <h2>7. 合作状态 / 风险库</h2>
+          <p>用于区分“工作库中可作为当前累积参考”“历史/到期/需核对”“代码共享/权益未知”等状态。该库为 JSON/CSV 可替换，用于降低旧合作规则被误计入的风险。</p>
+        </div>
+        <div class="actions">
+          <a class="button-link" href="/api/partner-status/json">下载状态 JSON</a>
+          <a class="button-link secondary" href="/api/partner-status/csv">下载状态 CSV</a>
+        </div>
+      </div>
+      <div class="table-wrap" id="partner-status-table">加载合作状态库…</div>
+    </section>
+
+    <section class="panel full">
+      <div class="section-title-row">
+        <div>
+          <h2>8. 784代码共享 / 非南航承运规则库</h2>
+          <p>用于 CZ/OQ 市场方、784票号、但实际承运方不是 CZ/OQ 的场景：定级里程按维护者维护的非 CZ/OQ 承运参考规则估算，定级航段按票面舱位代码参考测算。</p>
+        </div>
+        <div class="actions">
+          <a class="button-link" href="/api/codeshare-784/json">下载规则 JSON</a>
+          <a class="button-link secondary" href="/api/codeshare-784/csv">下载规则 CSV</a>
+        </div>
+      </div>
+      <div class="table-wrap" id="codeshare-784-table">加载 784 代码共享规则库…</div>
+    </section>
+
+    <section class="panel full">
+      <div class="section-title-row">
+        <div>
+          <h2>9. 标准里程 / 官方查询工具</h2>
+          <p>建议优先通过航空公司官网、官方/公开工具或实际入账记录查询标准里程后手动填写。其他航司自有工具不一定等同于累积到南航明珠的入账口径；机场距离估算只作为 fallback。</p>
+        </div>
+        <div class="actions">
+          <a class="button-link" href="/api/mileage-tools/json">下载工具库 JSON</a>
+          <a class="button-link secondary" href="/api/mileage-tools/csv">下载工具库 CSV</a>
+        </div>
+      </div>
+      <div class="tool-hints">
+        <a class="button-link" href="https://skypearl.csair.com/" target="_blank" rel="noopener">打开南航明珠参考入口</a>
+        <span>建议优先级：实际入账 > 航空公司官方/公开工具手动查询 > 南航明珠查询 > 对应航司工具 > 机场距离估算。</span>
+      </div>
+      <div class="table-wrap" id="mileage-tools-table">加载工具链接库…</div>
+    </section>
+
+    <section class="panel full">
+      <div class="section-title-row">
+        <div>
+          <h2>10. 数据来源登记</h2>
+          <p>本项目所有规则库均为非官方本地测算工作库。每个 JSON/CSV 规则表通过 <code>source_refs</code> 关联到统一来源登记表；公开发布时请保留来源字段与免责声明。</p>
+        </div>
+        <div class="actions">
+          <a class="button-link" href="/api/data-sources/json">下载来源 JSON</a>
+          <a class="button-link secondary" href="/api/data-sources/csv">下载来源 CSV</a>
+        </div>
+      </div>
+      <div class="table-wrap" id="data-sources-table">加载数据来源登记表…</div>
+    </section>
+
+
+
+
+    <section class="panel full">
+      <div class="section-title-row">
+        <div>
+          <h2>服务等级与产品命名提示</h2>
+          <p>以下说明用于提醒使用者：服务等级名称、产品营销名、座椅产品名与常旅客累积分类不一定一一对应。计算时请优先使用实际订座舱位代码、承运人、票号、官方累积表和最终入账。</p>
+        </div>
+        <div class="actions">
+          <a class="button-link" href="/api/service-class-notes/json">下载说明 JSON</a>
+          <a class="button-link secondary" href="/api/service-class-notes/csv">下载说明 CSV</a>
+        </div>
+      </div>
+      <div class="table-wrap" id="service-class-notes-table">加载服务等级说明…</div>
+    </section>
+
+    <section class="panel full notes">
+      <h2>使用提示与免责声明（公开发布建议保留）</h2>
+      <ul>
+        <li><strong>非官方：</strong>本项目与中国南方航空、南航明珠俱乐部及其他航空公司无隶属、授权、赞助、认证或背书关系；航司名称、二字码和常旅客计划名称仅用于描述字段含义和兼容对象。</li>
+        <li><strong>仅为估算：</strong>随包门槛、保级折扣、合作伙伴状态、代码共享、舱位累积、标准里程、奖励里程和成本效率仅用于本地测算；不保证准确、完整、实时、可入账、可出票或可复现。</li>
+        <li><strong>官方优先：</strong>实际购票、累积、保级、权益、改退签、代码共享识别和账户入账，以航空公司官网、官方 App/小程序、客服、出票页面、客票规则、运输总条件和账户最终入账为准。</li>
+        <li><strong>非专业建议：</strong>本项目不构成法律、财务、税务、签证、保险、旅行安全、票务、票价构造或常旅客规则解释建议；请在购票和出行前自行核验。</li>
+        <li><strong>合规使用：</strong>本项目不鼓励、不指导、不保证任何违反承运人运输总条件、票价规则、入境规定、法律法规或平台规则的行为，包括弃程、隐藏城市、故意跳段、规避票规、滥用权益或利用系统漏洞等。</li>
+        <li><strong>784 现金消费模式：</strong>784 票号、CZ/OQ 市场方且 CZ/OQ 实际承运时，工具按现金消费金额模式进行参考测算；实际入账仍以航空公司系统为准。</li>
+        <li><strong>784 代码共享/非南航承运：</strong>784 票号、CZ/OQ 市场方但非 CZ/OQ 实际承运时，可用该模式参考测算；请优先核对实际承运方、代码共享、票面舱位、票号、规则有效期和最终入账。</li>
+        <li><strong>合作伙伴参考表：</strong>合作伙伴参考表默认按“标准里程 × 舱位累积比例”估算定级/奖励里程，定级航段按参考表字段估算；不代表航空公司保证入账。</li>
+        <li><strong>合作状态提示：</strong>历史联盟、历史合作、权益展示或代码共享不应默认视为当前可累积；本工具按合作状态库对需核验航司给出提示或默认不计入。</li>
+        <li><strong>标准里程：</strong>建议优先使用官方/公开工具或实际入账记录手动填写；其他航司自有工具结果不一定等同于南航明珠入账口径。</li>
+        <li><strong>AI 辅助声明：</strong>本项目部分代码、文案、结构、注释和测试说明由 AI 辅助生成或修改，并经人工整理；AI 辅助内容可能存在错误、遗漏、实现 bug 或过时假设。</li>
+        <li><strong>舱等与产品名歧义：</strong>“First / Flagship First / Domestic First / Premium Economy / 明珠经济舱”等名称可能因航司、航线、机型、销售地区和日期不同而指向不同产品。本工具中的服务等级仅为规则库显示标签，不能替代实际订座舱位代码、官方累积表和账户最终入账。</li>
+        <li><strong>数据发布提醒：</strong>公开发布或二次分发前，请保留来源字段、免责声明和商标说明，并移除个人信息、页面信息、票号、订单号、会员号、证件信息、支付记录和大段第三方页面原文。</li>
+      </ul>
+    </section>
+  </main>
+
+  <template id="row-template">
+    <tr>
+      <td><input class="name" value=""></td>
+      <td><input class="count" type="number" min="0" step="1" value=""></td>
+      <td>
+        <select class="product_type">
+          <option value=""></option>
+          <option value="ticket">机票</option>
+          <option value="upgrade">升舱产品</option>
+          <option value="ancillary">行李/选座等</option>
+          <option value="manual">手动/活动</option>
+        </select>
+      </td>
+      <td>
+        <select class="earning_mode">
+          <option value=""></option>
+          <option value="auto">自动判断</option>
+          <option value="cash">784现金消费</option>
+          <option value="standard">CZ/OQ标准里程</option>
+          <option value="partner">合作伙伴标准里程</option>
+          <option value="codeshare_784">784代码共享/非南航承运</option>
+          <option value="ancillary">辅助产品</option>
+          <option value="manual">手动</option>
+          <option value="none">不累积</option>
+        </select>
+      </td>
+      <td><input class="marketing_carrier lookup-input" list="carrier-code-list" value="" placeholder="CZ"></td>
+      <td><input class="operating_carrier lookup-input" list="carrier-code-list" value="" placeholder="CZ"></td>
+      <td><input class="flight_number" value="" placeholder="CZ1234"></td>
+      <td><input class="origin_airport" maxlength="3" value="" placeholder="CAN"></td>
+      <td><input class="destination_airport" maxlength="3" value="" placeholder="PEK"></td>
+      <td><input class="ticket_prefix" value=""></td>
+      <td><input class="booking_class" maxlength="1" value=""></td>
+      <td><input class="standard_miles" type="number" min="0" step="1" value=""></td>
+      <td>
+        <select class="standard_miles_source">
+          <option value="unknown">未标注</option>
+          <option value="manual_actual_posting">实际入账</option>
+          <option value="manual_official_tool">手动：官方/公开工具</option>
+          <option value="cz_skypearl_calculator">南航明珠查询</option>
+          <option value="airline_own_calculator">对应航司工具</option>
+          <option value="airport_distance_estimate">机场距离估算</option>
+        </select>
+      </td>
+      <td><input class="mileage_tool_code lookup-input tool-lookup-input" list="mileage-tool-code-list" maxlength="12" value="" placeholder="CZ"></td>
+      <td><input class="standard_miles_note" value="" placeholder="如：按南航查询/实际入账"></td>
+      <td><input class="cost_group" value="" placeholder="如：ORD001"></td>
+      <td>
+        <select class="cost_input_mode">
+          <option value="per_unit">每段/每次成本</option>
+          <option value="row_total">本行总成本</option>
+          <option value="order_total_even">整单总价：按段数均分</option>
+          <option value="order_total_by_standard_miles">整单总价：按标准里程分摊</option>
+        </select>
+      </td>
+      <td><input class="cash_amount" type="number" min="0" step="1" value=""></td>
+      <td><input class="manual_qualifying_miles" type="number" min="0" step="1" value=""></td>
+      <td><input class="manual_qualifying_segments" type="number" min="0" step="0.25" value=""></td>
+      <td><input class="manual_award_miles" type="number" min="0" step="1" value=""></td>
+      <td><button type="button" class="remove-row danger small">删除</button></td>
+    </tr>
+  </template>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}?v=23"></script>
+</body>
+</html>
