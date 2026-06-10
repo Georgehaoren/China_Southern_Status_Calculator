@@ -3,6 +3,7 @@
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-blue">
   <img alt="Flask" src="https://img.shields.io/badge/Flask-3.x-black">
+  <img alt="Status" src="https://img.shields.io/badge/Status-MVP-success">
   <img alt="License" src="https://img.shields.io/badge/License-MIT-green">
 </p>
 
